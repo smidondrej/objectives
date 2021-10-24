@@ -1,0 +1,62 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+
+  private url: string = "http://127.0.0.1:8000";
+
+  constructor(private http: HttpClient) { }
+
+  degListOfBS() {
+    console.log("call API to get list of BS @ " + this.url + "/bs")
+    return this.http.get(this.url + "/bs")
+      .pipe((response) => response);
+  }
+
+  getBS(bs_id: number) {
+    console.log("call API to get BS" + bs_id + " @ " + this.url + "/bs/" + bs_id)
+    return this.http.get(this.url + "/bs/" + bs_id)
+      .pipe((response) => response);
+  }
+
+  getSlice(slice_id: number) {
+    console.log("call API to get Slice @ " + this.url + "/slice/" + slice_id)
+    return this.http.get(this.url + "/slice/" + slice_id)
+      .pipe((response) => response);
+  }
+
+  getProvision(bs_id: number, time: number, window: number) {
+    if (window === undefined){
+      console.log("call API to get Provision of BS" + bs_id + " from time " + time + " @ " + this.url + "/provision/" + bs_id + "/time=" + time)
+      return this.http.get(this.url + "/provision/" + bs_id + "/time=" + time)
+        .pipe((response) => response);
+    }
+    if (time === undefined && window === undefined) {
+      console.log("call API to get Provision of BS" + bs_id + " from time " + time + " for window " + window + " @ " + this.url + "/provision/" + bs_id + "/time=" + time + "/window=" + window)
+      return this.http.get(this.url + "/provision/" + bs_id + "/time=" + time + "/window=" + window)
+        .pipe((response) => response);
+    }
+    console.log("call API to get Provision of BS" + bs_id + " @ " + this.url + "/provision/" + bs_id)
+    return this.http.get(this.url + "/provision/" + bs_id)
+      .pipe((response) => response);
+  }
+
+  getTimesptes(time: number, window: number) {
+    if (window === undefined){
+      console.log("call API to get Timestep from time " + time + " @ " + this.url + "/timesteps/time=" + time)
+      return this.http.get(this.url + "/timesteps/time=" + time)
+        .pipe((response) => response);
+    }
+    if (time === undefined && window === undefined) {
+      console.log("call API to get Timestep from time " + time + " for window " + window + " @ " + this.url + "/timesteps/time=" + time + "/window=" + window)
+      return this.http.get(this.url + "/timesteps/time=" + time + "/window=" + window)
+        .pipe((response) => response);
+    }
+    console.log("call API to get Timestep @ " + this.url + "/timesteps")
+    return this.http.get(this.url + "/timesteps")
+      .pipe((response) => response);
+  }
+}
