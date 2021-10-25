@@ -1,1 +1,143 @@
-<p>data works!</p>
+<h4>Display parameters</h4>
+<form (ngSubmit)="setParam()">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="windowInput">Window</label>
+            <input type="number" id="windowInput" name="windowInput" class="form-control" placeholder="Set a history span"
+            [(ngModel)]="window"
+            required
+            />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="time">Time</label>
+            <input type="number" id="timeInput" name="timeInput" class="form-control" placeholder="Set a beginning time"
+            [(ngModel)]="time"
+            required
+            />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="slice">Slice</label>
+            <input type="number" id="sliceInput" name="sliceInput" class="form-control" placeholder="Choose a slice"
+            [(ngModel)]="slice"
+            required
+            />
+        </div>
+    </div>
+    <button class="btn btn-primary">Set</button>
+</form>
+
+<ng-container *ngIf="timesteps && !provision">
+    <div class="my-3">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Base Station
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <table class="table table-bordered table-striped">
+            <thead class="text-center">
+                <tr>
+                    <th class="table-secondary">Time step</th>
+                    <th class="table-warning">DeepCog cost</th>
+                    <th class="table-warning">Objective cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let timestep of timesteps.time_series">
+                    <td class="table-warning text-right">{{ timestep.timestep | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.cost_mean_ddc_old | number }}</td>
+                    <td class="table-primary text-right">{{ timestep.cost_mean_slice_new | number }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="provision">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Slice provision {{ slice }}
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div class="my-3">
+        <table class="table table-bordered table-striped">
+            <thead class="text-center">
+                <tr>
+                    <th class="table-secondary">Time step</th>
+                    <th class="table-warning">DeepCog cost</th>
+                    <th class="table-warning">Objective cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let timestep of timesteps.time_series">
+                    <td class="table-warning text-right">{{ timestep.timestep | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.cost_mean_ddc_old | number }}</td>
+                    <td class="table-primary text-right">{{ timestep.cost_mean_slice_new | number }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="my-3">
+        <table class="table table-bordered table-striped">
+            <thead class="text-center">
+                <tr>
+                    <th class="table-secondary">BS{{ slice_base_stations[0] | number }} demand</th>
+                    <th class="table-warning">BS{{ slice_base_stations[0] | number }} DeepCog alloc</th>
+                    <th class="table-warning">BS{{ slice_base_stations[0] | number }} Slice alloc</th>
+                    <th class="table-warning">BS{{ slice_base_stations[0] | number }} DeepCog diffs</th>
+                    <th class="table-warning">BS{{ slice_base_stations[0] | number }} Slice diffs</th>
+                    <th class="table-warning">BS{{ slice_base_stations[0] | number }} DeepCog cost</th>
+                    <th class="table-warning">BS{{ slice_base_stations[0] | number }} Slice cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let timestep of provision[0].series">
+                    <td class="table-warning text-right">{{ timestep.demand | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.alloc_ddc | number }}</td>
+                    <td class="table-primary text-right">{{ timestep.alloc_slice | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.diff_ddc | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.diff_slice | number }}</td>
+                    <td class="table-primary text-right">{{ timestep.cost_ddc | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.slice_cost_slice | number }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="my-3">
+        <table class="table table-bordered table-striped">
+            <thead class="text-center">
+                <tr>
+                    <th class="table-secondary">BS{{ slice_base_stations[1] | number }} demand</th>
+                    <th class="table-warning">BS{{ slice_base_stations[1] | number }} DeepCog alloc</th>
+                    <th class="table-warning">BS{{ slice_base_stations[1] | number }} Slice alloc</th>
+                    <th class="table-warning">BS{{ slice_base_stations[1] | number }} DeepCog diffs</th>
+                    <th class="table-warning">BS{{ slice_base_stations[1] | number }} Slice diffs</th>
+                    <th class="table-warning">BS{{ slice_base_stations[1] | number }} DeepCog cost</th>
+                    <th class="table-warning">BS{{ slice_base_stations[1] | number }} Slice cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let timestep of provision[1].series">
+                    <td class="table-warning text-right">{{ timestep.demand | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.alloc_ddc | number }}</td>
+                    <td class="table-primary text-right">{{ timestep.alloc_slice | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.diff_ddc | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.diff_slice | number }}</td>
+                    <td class="table-primary text-right">{{ timestep.cost_ddc | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.slice_cost_slice | number }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
