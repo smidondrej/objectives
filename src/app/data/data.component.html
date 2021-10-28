@@ -52,7 +52,7 @@
             <tbody>
                 <tr *ngFor="let timestep of timesteps.time_series">
                     <td class="table-secondary text-right">{{ timestep.timestep | number }}</td>
-                    <td class="table-warning text-right">{{ timestep.cost_mean_ddc_old | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.cost_mean_slice_old | number }}</td>
                     <td class="table-primary text-right">{{ timestep.cost_mean_slice_new | number }}</td>
                 </tr>
             </tbody>
