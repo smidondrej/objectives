@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class DataService {
 
-  private url: string = "http://127.0.0.1:8000";
+  private url: string = "https://shrouded-stream-13128.herokuapp.com";
 
   constructor(private http: HttpClient) { }
 

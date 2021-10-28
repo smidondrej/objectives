@@ -46,12 +46,12 @@
                 <tr>
                     <th class="table-secondary">Time step</th>
                     <th class="table-warning">DeepCog cost</th>
-                    <th class="table-warning">Objective cost</th>
+                    <th class="table-primary">Objective cost</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let timestep of timesteps.time_series">
-                    <td class="table-warning text-right">{{ timestep.timestep | number }}</td>
+                    <td class="table-secondary text-right">{{ timestep.timestep | number }}</td>
                     <td class="table-warning text-right">{{ timestep.cost_mean_ddc_old | number }}</td>
                     <td class="table-primary text-right">{{ timestep.cost_mean_slice_new | number }}</td>
                 </tr>
@@ -76,12 +76,12 @@
                 <tr>
                     <th class="table-secondary">Time step</th>
                     <th class="table-warning">DeepCog cost</th>
-                    <th class="table-warning">Objective cost</th>
+                    <th class="table-primary">Objective cost</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let timestep of timesteps.time_series">
-                    <td class="table-warning text-right">{{ timestep.timestep | number }}</td>
+                    <td class="table-secondary text-right">{{ timestep.timestep | number }}</td>
                     <td class="table-warning text-right">{{ timestep.cost_mean_ddc_old | number }}</td>
                     <td class="table-primary text-right">{{ timestep.cost_mean_slice_new | number }}</td>
                 </tr>
@@ -94,22 +94,18 @@
                 <tr>
                     <th class="table-secondary">BS{{ slice_base_stations[0] | number }} demand</th>
                     <th class="table-warning">BS{{ slice_base_stations[0] | number }} DeepCog alloc</th>
-                    <th class="table-warning">BS{{ slice_base_stations[0] | number }} Slice alloc</th>
-                    <th class="table-warning">BS{{ slice_base_stations[0] | number }} DeepCog diffs</th>
-                    <th class="table-warning">BS{{ slice_base_stations[0] | number }} Slice diffs</th>
+                    <th class="table-primary">BS{{ slice_base_stations[0] | number }} Slice alloc</th>
                     <th class="table-warning">BS{{ slice_base_stations[0] | number }} DeepCog cost</th>
-                    <th class="table-warning">BS{{ slice_base_stations[0] | number }} Slice cost</th>
+                    <th class="table-primary">BS{{ slice_base_stations[0] | number }} Slice cost</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let timestep of provision[0].series">
-                    <td class="table-warning text-right">{{ timestep.demand | number }}</td>
+                    <td class="table-secondary text-right">{{ timestep.demand | number }}</td>
                     <td class="table-warning text-right">{{ timestep.alloc_ddc | number }}</td>
                     <td class="table-primary text-right">{{ timestep.alloc_slice | number }}</td>
-                    <td class="table-warning text-right">{{ timestep.diff_ddc | number }}</td>
-                    <td class="table-warning text-right">{{ timestep.diff_slice | number }}</td>
-                    <td class="table-primary text-right">{{ timestep.cost_ddc | number }}</td>
-                    <td class="table-warning text-right">{{ timestep.slice_cost_slice | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.slice_cost_ddc | number }}</td>
+                    <td class="table-primary text-right">{{ timestep.slice_cost_slice | number }}</td>
                 </tr>
             </tbody>
         </table>
@@ -120,22 +116,18 @@
                 <tr>
                     <th class="table-secondary">BS{{ slice_base_stations[1] | number }} demand</th>
                     <th class="table-warning">BS{{ slice_base_stations[1] | number }} DeepCog alloc</th>
-                    <th class="table-warning">BS{{ slice_base_stations[1] | number }} Slice alloc</th>
-                    <th class="table-warning">BS{{ slice_base_stations[1] | number }} DeepCog diffs</th>
-                    <th class="table-warning">BS{{ slice_base_stations[1] | number }} Slice diffs</th>
+                    <th class="table-primary">BS{{ slice_base_stations[1] | number }} Slice alloc</th>
                     <th class="table-warning">BS{{ slice_base_stations[1] | number }} DeepCog cost</th>
-                    <th class="table-warning">BS{{ slice_base_stations[1] | number }} Slice cost</th>
+                    <th class="table-primary">BS{{ slice_base_stations[1] | number }} Slice cost</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let timestep of provision[1].series">
-                    <td class="table-warning text-right">{{ timestep.demand | number }}</td>
+                    <td class="table-secondary text-right">{{ timestep.demand | number }}</td>
                     <td class="table-warning text-right">{{ timestep.alloc_ddc | number }}</td>
                     <td class="table-primary text-right">{{ timestep.alloc_slice | number }}</td>
-                    <td class="table-warning text-right">{{ timestep.diff_ddc | number }}</td>
-                    <td class="table-warning text-right">{{ timestep.diff_slice | number }}</td>
-                    <td class="table-primary text-right">{{ timestep.cost_ddc | number }}</td>
-                    <td class="table-warning text-right">{{ timestep.slice_cost_slice | number }}</td>
+                    <td class="table-warning text-right">{{ timestep.slice_cost_ddc | number }}</td>
+                    <td class="table-primary text-right">{{ timestep.slice_cost_slice | number }}</td>
                 </tr>
             </tbody>
         </table>
